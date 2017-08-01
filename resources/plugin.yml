@@ -1,0 +1,27 @@
+name: StaffManager
+main: com.DarkZek.StaffManager.Main
+version: 0.1
+softdepend: [ProtocolLib]
+author: DarkZek
+commands:
+  admin:
+    description: Staff command
+    usage: /admin
+  unmute:
+    description: Staff command
+    usage: /unmute <player>
+  mute:
+    description: Staff command
+    usage: /mute <player>
+  warn:
+    description: Staff command
+    usage: /warn <player>
+  warns:
+    description: Tells you how many warnings you have
+    usage: /warns (player)
+  updateachievements:
+    description: Updates your achievements
+    usage: /updateachievements
+  welcome:
+    description: Says the default welcome message
+    usage: /welcome
