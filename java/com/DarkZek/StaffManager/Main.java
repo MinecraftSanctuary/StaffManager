@@ -16,12 +16,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class Main extends JavaPlugin {
-	
+
+	//
+	// If you are getting errors make sure you are using java 7 or above in your IDE!
+	//
+
 	public HashMap<String, String> names = new HashMap<String, String>();
 	
 	public HashMap<String, Location> adminMode = new HashMap<String, Location>();
-	
-	//public HashMap<String, Integer> achievements = new HashMap<String, Integer>();
 	
 	public ArrayList<String> muted;
 	
@@ -38,8 +40,6 @@ public class Main extends JavaPlugin {
 	Commands commands = new Commands();
 	
 	Listeners listeners = new Listeners();
-	
-	//private ProtocolManager protocolManager;
 	
 	Plugin plugin;
 	

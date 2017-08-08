@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class Methods extends BukkitRunnable {
+public class Methods {
 	Main main;
 	
 	FileConfiguration config;
@@ -33,8 +33,6 @@ public class Methods extends BukkitRunnable {
 		config.set("muted",main.muted);
 		main.saveConfig();
 	}
-	
-
 	
 	public void giveWarning(CommandSender sender, String target, String reason) {
 		target = target.toLowerCase();
@@ -69,28 +67,6 @@ public class Methods extends BukkitRunnable {
 		}
 	}
 	
-//	public void updatePlayerAchievements(Player pl) {
-//		int achievments = 0;
-//		if (this.main.achievements.get(pl) == null) {
-//			achievments = this.getPlayerAchevements(pl);
-//		} else {
-//			achievments = this.main.achievements.get(pl);
-//		}
-//		main.achievements.put(pl.getName(), achievments);
-//		this.main.getServer().dispatchCommand(this.main.getServer().getConsoleSender(), "scoreboard players set " + pl.getName() +" Achievements " + achievments);
-//	}
-//	
-//	public int getPlayerAmountAchievements(Player pl) {
-//		int count = 0;
-//		for(Achievement ach : Achievement.values()) {
-//			if (pl.hasAchievement(ach)) {
-//				count++;
-//			}
-//		}
-//		
-//		return count;
-//	}
-	
 	void addMutedPlayer(String uuid) {
 		main.muted.add(uuid);
 		saveMutedPlayers();
@@ -99,20 +75,6 @@ public class Methods extends BukkitRunnable {
 	void removeMutedPlayer(String uuid) {
 		main.muted.remove(uuid);
 		saveMutedPlayers();
-	}
-	
-	public void setPlayerAchevements(Player pl, int achevements) {
-		config.set(pl.getUniqueId() + ".achevements", achevements);
-		main.saveConfig();
-	}
-	
-	public int getPlayerAchevements(Player pl) {
-		int ach = 0;
-		
-
-		
-		
-		return ach;
 	}
 	
 	public void showGUI(Player player) {

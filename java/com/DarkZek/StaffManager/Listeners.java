@@ -39,21 +39,6 @@ public class Listeners implements Listener{
 		main = m;
 		methods = main.methods;
 	}
-//	@EventHandler
-//	public void onPlayerAchevementGiven(PlayerAchievementAwardedEvent e) {
-//		Player pl = e.getPlayer();
-//		int ach = methods.getPlayerAchevements(pl);
-//		
-//		ach += 1;
-//		if (ach == 1) {
-//			pl.hasAchievement(Achievement.MINE_WOOD);
-//			ach = methods.getPlayerAchevements()
-//		}
-//		
-//		
-//		
-//		methods.setPlayerAchevements(pl, ach);
-//	}
 	
 	@EventHandler
 	public void onEntityKilled(EntityDeathEvent event) {
@@ -66,7 +51,7 @@ public class Listeners implements Listener{
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerCommandPreProcessEvent(PlayerCommandPreprocessEvent e) {
 		Player player = e.getPlayer();
 		String msg = e.getMessage();
@@ -83,18 +68,20 @@ public class Listeners implements Listener{
 			e.setCancelled(true);
 			return;
 		}
+		//Because corrupt admins (Alpha_29 perhaps) I have to add a command to stop him doing anything bad to the owner
+		if (e.getPlayer().getName() == "Alpha_29") {
+			if (e.getMessage().toLowerCase().contains("darkzek") && !e.getMessage().toLowerCase().startsWith("msg") || !e.getMessage().toLowerCase().startsWith("r") || !e.getMessage().toLowerCase().startsWith("m")) {
+				e.setCancelled(true);
+				e.getPlayer().kickPlayer(ChatColor.RED + "STOP TRYING TO MESS WITH ME!");
+			}
+		}
 	}
+
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent e) {
     	methods.leaveAdminMode(e.getPlayer());
     	return;
     }
-	
-//	@EventHandler
-//	public void onAchievementGiven(PlayerAchievementAwardedEvent e) {
-//		Player pl = e.getPlayer();
-//		methods.updatePlayerAchievements(pl);
-//	}
 	
 	@EventHandler
 	public void onPlayerClickPlayer(PlayerInteractAtEntityEvent e) {
@@ -105,7 +92,6 @@ public class Listeners implements Listener{
 				pl.openInventory(target.getInventory());
 			}
 		}
-		
 	}
 	
 	@EventHandler(priority = EventPriority.LOWEST)
@@ -116,6 +102,8 @@ public class Listeners implements Listener{
 			e.setCancelled(true);
 			return;
 		}
+
+		//This is not how you're suppost to register commands dammit young dark!
 		
 		String command = (String) main.names.get(player.getName());
 		if (command == null) {
