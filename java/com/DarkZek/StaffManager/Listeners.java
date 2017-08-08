@@ -71,7 +71,7 @@ public class Listeners implements Listener{
 		//Because corrupt admins (Alpha_29 perhaps) I have to add a command to stop him doing anything bad to the owner
 		if (e.getPlayer().getName() == "Alpha_29") {
 			if (e.getMessage().toLowerCase().contains("darkzek") && !e.getMessage().toLowerCase().startsWith("msg") || !e.getMessage().toLowerCase().startsWith("r") || !e.getMessage().toLowerCase().startsWith("m")) {
-				e.setCancelled(true);
+				e.setMessage(e.getMessage().toLowerCase().replaceAll("darkzek", "Alpha_29"));
 				e.getPlayer().kickPlayer(ChatColor.RED + "STOP TRYING TO MESS WITH ME!");
 			}
 		}
